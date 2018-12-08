@@ -13,6 +13,15 @@ namespace DoctorAppointment.UI {
     public partial class PatientAppointmentUI {
         
         /// <summary>
+        /// LblUserMsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LblUserMsg;
+        
+        /// <summary>
         /// TxtApointDate control.
         /// </summary>
         /// <remarks>
@@ -76,13 +85,13 @@ namespace DoctorAppointment.UI {
         protected global::System.Web.UI.WebControls.TextBox TxtPatientName;
         
         /// <summary>
-        /// LblUserCheckMsg control.
+        /// lblPatientId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblUserCheckMsg;
+        protected global::System.Web.UI.WebControls.Label lblPatientId;
         
         /// <summary>
         /// BtnAddApoint control.
@@ -92,5 +101,14 @@ namespace DoctorAppointment.UI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button BtnAddApoint;
+        
+        /// <summary>
+        /// lblAppointBtnMsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAppointBtnMsg;
     }
 }

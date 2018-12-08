@@ -60,9 +60,9 @@
 			          <li><a runat="server" href="~/">Home</a></li>
 			          <li><a runat="server" href="~/About">About</a></li>
 			          <li><a runat="server" href="~/UI/AppointmentListUI">Appointment List</a></li>
-			          <li><a runat="server" href="doctors.html">Doctors</a></li>
+			          <li><a runat="server" href="~/UI/DoctorsUI">Doctors</a></li>
 			          <li><a runat="server" href="~/UI/PatientListUI">Patient List</a></li>
-			          <li class="menu-has-children"><a runat="server" href="">Blog</a>
+			          <%--<li class="menu-has-children"><a runat="server" href="">Blog</a>
 			            <ul>
 			              <li><a runat="server" href="blog-home.html">Blog Home</a></li>
 			              <li><a runat="server" href="blog-single.html">Blog Single</a></li>
@@ -80,7 +80,7 @@
 					            </ul>
 					          </li>					                		
 			            </ul>
-			          </li>					          					          		          
+			          </li>	--%>				          					          		          
 			          <li><a runat="server" href="~/Contact">Contact</a></li>
 			        </ul>
 			      </nav><!-- #nav-menu-container -->		    		
@@ -114,10 +114,10 @@
 							<div class="single-footer-widget mail-chimp">
 								<h6 class="mb-20">Contact Us</h6>
 								<p>
-									56/8, Santa bullevard, Rocky beach, San fransisco, Los angeles, USA
+									56/8,Link Road, 14/A Adabor Road, Shyamoli, Dhaka, BD
 								</p>
-								<h3>012-6532-568-9746</h3>
-								<h3>012-6532-568-97468</h3>
+								<h3>017145-885565</h3>
+								<h3>015516-885455</h3>
 							</div>
 						</div>							
 						<div class="col-lg-6  col-md-12">
@@ -125,7 +125,7 @@
 								<h6>Newsletter</h6>
 								<p>You can trust us. we only send promo offers, not a single spam.</p>
 								<div id="mc_embed_signup">
-									<form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="form-inline">
+									<form target="_blank" action="#" method="get" class="form-inline">
 
 										<div class="form-group row" style="width: 100%">
 											<div class="col-lg-8 col-md-12">
@@ -144,9 +144,9 @@
 					</div>
 
 					<div class="row footer-bottom d-flex justify-content-between">
-						<p class="col-lg-8 col-sm-12 footer-text m-0"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+						<%--<p class="col-lg-8 col-sm-12 footer-text m-0"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>--%>
 						<div class="col-lg-4 col-sm-12 footer-social">
 							<a href="#"><i class="fa fa-facebook"></i></a>
 							<a href="#"><i class="fa fa-twitter"></i></a>

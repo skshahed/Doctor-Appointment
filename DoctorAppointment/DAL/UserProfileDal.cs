@@ -45,6 +45,7 @@ namespace DoctorAppointment.DAL
             }
             return userInfoDt;
         }
+        /****** Update User Information*******/
         public bool UserInfoUpdate(UserProfile oUserProfile)
         {
             bool isSuccess = false;
@@ -66,5 +67,6 @@ namespace DoctorAppointment.DAL
             }
             return isSuccess;
         }
+        
     }
 }

@@ -378,6 +378,7 @@
     <Content Include="Global.asax" />
     <Content Include="Site.Master" />
     <Content Include="UI\AppointmentListUI.aspx" />
+    <Content Include="UI\DoctorsUI.aspx" />
     <Content Include="UI\PatientAppointmentUI.aspx" />
     <Content Include="UI\PatientDetailsUI.aspx" />
     <Content Include="UI\PatientListUI.aspx" />
@@ -586,6 +587,13 @@
     </Compile>
     <Compile Include="UI\AppointmentListUI.aspx.designer.cs">
       <DependentUpon>AppointmentListUI.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UI\DoctorsUI.aspx.cs">
+      <DependentUpon>DoctorsUI.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UI\DoctorsUI.aspx.designer.cs">
+      <DependentUpon>DoctorsUI.aspx</DependentUpon>
     </Compile>
     <Compile Include="UI\PatientAppointmentUI.aspx.cs">
       <DependentUpon>PatientAppointmentUI.aspx</DependentUpon>

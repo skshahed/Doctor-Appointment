@@ -105,14 +105,23 @@
             <div class="row">
                 <div class="col-md-4 border border-success">
                     <div class="mt-10"></div>
-                    <h4>Definition 01</h4>
-                    <p>Recently, the US Federal government banned online casinos from operating in America by making it illegal to transfer money to them through any US bank or payment system. </p>
+                    <h4>Doctors Appointment</h4>
+                    <p>Welcome, this is the place for a better treatment. </p>
                 </div>
 
                 <div class=" col-md-4 border border-success offset-md-4">
                     <div class="mt-10"></div>
-                    <h4>Definition 02</h4>
-                    <p> As a result of this law, most of the popular online casino networks</p>
+                    <h4>Appointment Information</h4>
+                    <table>
+                        <tr>
+                            <td><b>Visit Time :</b></td>
+                            <td>From 6:00 PM to 9:00 PM</td>
+                        </tr>
+                        <tr>
+                            <td><b>Appointmnet No :</b></td>
+                            <td><asp:Label runat="server" ID="lblAppointNo"></asp:Label></td>
+                        </tr>
+                    </table>
                 </div>
             </div>
     <!--  End doctor General Information Row -->

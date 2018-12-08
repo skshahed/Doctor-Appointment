@@ -16,7 +16,12 @@ namespace DoctorAppointment.UI
         {
             if (!IsPostBack)
             {
-                searchDate = DateTime.Now.ToString("yyyy-MM-dd");
+                
+                searchDate = Request.QueryString["sDate"];
+                if (string.IsNullOrEmpty(searchDate))
+                {
+                    searchDate = DateTime.Now.ToString("yyyy-MM-dd");
+                }
                 TodayAppointmentList(searchDate);
             }
         }
@@ -76,6 +81,7 @@ namespace DoctorAppointment.UI
                 BLL.AppointmentListBll bll = new BLL.AppointmentListBll();
                 //string patientUserId = ((Label)GVAppointmentList.SelectedRow.FindControl("lblUserId")).Text;
                 int index = Convert.ToInt32(e.CommandArgument);
+                string appointId = ((Label)GVAppointmentList.Rows[index].Cells[1].FindControl("lblAppointId")).Text;
                 string patientUserId = ((Label)GVAppointmentList.Rows[index].Cells[2].FindControl("lblUserId")).Text;
                 int nullColumn = bll.GetUserNullInfo(patientUserId);
                 if(nullColumn > 0)
@@ -84,7 +90,7 @@ namespace DoctorAppointment.UI
                 }
                 else
                 {
-                    Response.Redirect("PrescriptionFormUI.aspx?pId=" + patientUserId + "");
+                    Response.Redirect("PrescriptionFormUI.aspx?pId=" + patientUserId + "&aId=" + appointId + "");
                 }
             }
         }

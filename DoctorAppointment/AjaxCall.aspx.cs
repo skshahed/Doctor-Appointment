@@ -18,25 +18,36 @@ namespace DoctorAppointment
         }
 // Ajax call to get Patient Name by Mobile Number  
         [WebMethod]
-        public static string GetPatientName(string mobileNo)
+        public static UserProfile GetPatientName(string mobileNo)
         {
-            string patientName = "";
+            UserProfile oUserProfile = new UserProfile();
+            //string patientName = "";
+            //List<UserProfile> lstUserInfo = new List<UserProfile>();
+            //UserProfile oUserProfile;
             DatabaseConnection con = new DatabaseConnection();
-            string sql = @"SELECT name from UserProfile_T WHERE cell_phone='" + mobileNo + "'";
+            string sql = @"SELECT user_id, name from UserProfile_T WHERE cell_phone='" + mobileNo + "'";
             try
             {
                 SqlCommand cmd = new SqlCommand(sql, con.GetSqlConnection());
-                patientName = Convert.ToString(cmd.ExecuteScalar());
+                //patientName = Convert.ToString(cmd.ExecuteScalar());
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {
+                   // oUserProfile = new UserProfile();
+                    oUserProfile.Id = Convert.ToInt32(dr["user_id"]);
+                    oUserProfile.Name = Convert.ToString(dr["name"]);
+                   // lstUserInfo.Add(oUserProfile);
+                }
             }
             catch (Exception r)
             {
-                patientName = "";
+                oUserProfile = null;
             }
             finally
             {
                 con.CloseConnection();
             }
-            return patientName;
+            return oUserProfile;
         }
 // Getting Doctor Category List
         [WebMethod]
@@ -100,7 +111,7 @@ namespace DoctorAppointment
             }
             return lstUserData;
         }
-// Getting Appointment List according to single User
+// Getting Appointment List in User Deatails according to single User
         [WebMethod]
         public static List<PatientAppointment> GetUserAppointHistory(string userId)
         {
@@ -198,6 +209,66 @@ namespace DoctorAppointment
                 con.CloseConnection();
             }
             return lstTest;
+        }
+ // Get Appointment Serial No 
+        [WebMethod]
+        public static string GetSerialNo(string appointDate, string doctorId)
+        {
+
+            string serial = "";
+            DatabaseConnection con = new DatabaseConnection();
+            //string appointDate = oPatientAppointment.AppointDate;
+            //string doctorId = oPatientAppointment.DoctorUserId.ToString();
+            string sql = @"SELECT COUNT(appointment_id) from Appointment_T where doctor_user_id='" + doctorId + "' AND appoint_date ='" + appointDate + "'";
+            
+            try
+            {
+                SqlCommand cmd = new SqlCommand(sql, con.GetSqlConnection());
+                int count = (Int32)cmd.ExecuteScalar();
+                serial = count.ToString();
+                string sql2 = @"SELECT patient_per_slot from DoctorInfo_T where doctor_user_id='" + doctorId + "'";
+                try { 
+                    SqlCommand cmd2 = new SqlCommand(sql2, con.GetSqlConnection());
+                    int patientNumber = (Int32)cmd2.ExecuteScalar();
+                    if(Convert.ToInt32(serial) >= patientNumber)
+                    {
+                        serial = "0";
+                    }
+                    else
+                    {
+                        if (serial == null)
+                        {
+                            serial = "Appointment Available. Your Serial No: 01";
+                        }
+                        else
+                        {
+                            int temp = Convert.ToInt32(serial) + 1;
+                            if (temp.ToString().Length == 1)
+                            {
+                                serial = "Appointment Available. Your Serial No: 0" + temp;
+                            }
+                            else
+                            {
+                                serial = "Appointment Available.Your Serial No: "+temp.ToString();
+                            }
+                        }
+                    }
+                }
+                catch
+                {
+                    serial = "Error";
+                }
+                
+            }
+            catch (Exception r)
+            {
+                serial = "Error";
+            }
+            finally
+            {
+                con.CloseConnection();
+            }
+            return serial;
         }
     }
 }
