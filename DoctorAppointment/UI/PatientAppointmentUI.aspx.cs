@@ -14,6 +14,9 @@ namespace DoctorAppointment.UI
         protected void Page_Load(object sender, EventArgs e)
         {
             TxtApointDate.Attributes.Add("readonly", "readonly");
+            txtHidePatientId.Attributes.Add("readonly", "readonly");
+            txtHidePatientId.Style.Add("visibility", "hidden");
+            //txtHidePatientId.Visible = false;
             //lblPatientId.Visible = false;
         }
 
@@ -89,18 +92,19 @@ namespace DoctorAppointment.UI
             UserProfile oUserProfile = new UserProfile();
             oUserProfile.Name = TxtPatientName.Text;
             oUserProfile.PhoneNo = TxtMobileNo.Text;
+            string setPatientId = txtHidePatientId.Text;
             PatientAppointment oPatientAppointment = new PatientAppointment();
-            string setPatientId = Request.Form[lblPatientId.ToString()];
-            string docSelectedId=Request.Form[DdlDocName.ToString()];
+            //string setPatientId = Request.Form[lblPatientId.UniqueID];
+            string docSelectedId=Request.Form[DdlDocName.UniqueID];
             
                 //setPatientId = lblPatientId.Text;
                 //docSelectedId = DdlDocName.SelectedValue;
            
-            //if (string.IsNullOrEmpty(setPatientId))
+            if (string.IsNullOrEmpty(setPatientId))
             {
-                //oPatientAppointment.PatientUserId = Convert.ToInt32("null");
+                //oPatientAppointment.PatientUserId = int.Parse(setPatientId);
             }
-           // else
+            else
             {
                 oPatientAppointment.PatientUserId = Convert.ToInt32(setPatientId);
             }

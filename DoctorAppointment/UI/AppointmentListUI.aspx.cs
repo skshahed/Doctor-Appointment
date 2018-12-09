@@ -83,6 +83,7 @@ namespace DoctorAppointment.UI
                 int index = Convert.ToInt32(e.CommandArgument);
                 string appointId = ((Label)GVAppointmentList.Rows[index].Cells[1].FindControl("lblAppointId")).Text;
                 string patientUserId = ((Label)GVAppointmentList.Rows[index].Cells[2].FindControl("lblUserId")).Text;
+                string patientSerial = ((Label)GVAppointmentList.Rows[index].Cells[3].FindControl("lblSerialNo")).Text;
                 int nullColumn = bll.GetUserNullInfo(patientUserId);
                 if(nullColumn > 0)
                 {
@@ -90,7 +91,7 @@ namespace DoctorAppointment.UI
                 }
                 else
                 {
-                    Response.Redirect("PrescriptionFormUI.aspx?pId=" + patientUserId + "&aId=" + appointId + "");
+                    Response.Redirect("PrescriptionFormUI.aspx?srlNo=" + patientSerial + "&aId=" + appointId + "");
                 }
             }
         }

@@ -13,6 +13,7 @@ namespace DoctorAppointment.BLL
         public bool PatientAppointData(UserProfile oUserProfile, PatientAppointment oPatientAppointment)
         {
             DAL.PatientAppointmentDal dal = new DAL.PatientAppointmentDal();
+
             bool appointConfirmation = dal.saveAppointment(oUserProfile, oPatientAppointment);
             return appointConfirmation;
         }

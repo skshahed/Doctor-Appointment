@@ -67,6 +67,15 @@ namespace DoctorAppointment.UI {
         protected global::System.Web.UI.WebControls.Label LblAvailabilityMsg;
         
         /// <summary>
+        /// MobileRev control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator MobileRev;
+        
+        /// <summary>
         /// TxtMobileNo control.
         /// </summary>
         /// <remarks>
@@ -85,13 +94,13 @@ namespace DoctorAppointment.UI {
         protected global::System.Web.UI.WebControls.TextBox TxtPatientName;
         
         /// <summary>
-        /// lblPatientId control.
+        /// txtHidePatientId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPatientId;
+        protected global::System.Web.UI.WebControls.TextBox txtHidePatientId;
         
         /// <summary>
         /// BtnAddApoint control.

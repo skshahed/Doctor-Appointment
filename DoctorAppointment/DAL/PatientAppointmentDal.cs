@@ -17,15 +17,24 @@ namespace DoctorAppointment.DAL
             bool isSuccess = false;
             string isPatientId = Convert.ToString(oPatientAppointment.PatientUserId);
             string query = "";
+            //DateTime nowDtTm = DateTime.Now;
+            //if (string.IsNullOrEmpty(oPatientAppointment.PatientUserId.ToString()))
+            //{
+            //    isPatientId = "";
+            //}
+            //else
+            //{
+            //    isPatientId = Convert.ToString(oPatientAppointment.PatientUserId);
+            //}
             DatabaseConnection con = new DatabaseConnection();
-            if (string.IsNullOrEmpty(isPatientId))
+            if (Convert.ToInt32(isPatientId) == 0)
             {
                 query = "INSERT INTO UserProfile_T(name, cell_phone) VALUES ('" + oUserProfile.Name + "', '" + oUserProfile.PhoneNo + "');SELECT @@IDENTITY";
                 try
                 {
                     SqlCommand cmd = new SqlCommand(query, con.GetSqlConnection());
                     isPatientId = Convert.ToString(cmd.ExecuteScalar());
-                    string query2 = "INSERT INTO Appointment_T(patient_user_id, doctor_user_id, appoint_date, visit_time) VALUES ('" + isPatientId + "', '" + oPatientAppointment.DoctorUserId + "', '" + oPatientAppointment.AppointDate + "', '" + oPatientAppointment.VisitTime + "')";
+                    string query2 = "INSERT INTO Appointment_T(patient_user_id, doctor_user_id, appoint_date, reserve_date) VALUES ('" + isPatientId + "', '" + oPatientAppointment.DoctorUserId + "', '" + oPatientAppointment.AppointDate + "', GETDATE())";
                     try
                     {
                         SqlCommand cmd2 = new SqlCommand(query2, con.GetSqlConnection());
@@ -45,7 +54,7 @@ namespace DoctorAppointment.DAL
             }
             else
             {
-                string query2 = "INSERT INTO Appointment_T(patient_user_id, doctor_user_id, appoint_date, visit_time) VALUES ('" + isPatientId + "', '" + oPatientAppointment.DoctorUserId + "', '" + oPatientAppointment.AppointDate + "', '" + oPatientAppointment.VisitTime + "')";
+                string query2 = "INSERT INTO Appointment_T(patient_user_id, doctor_user_id, appoint_date, reserve_date) VALUES ('" + isPatientId + "', '" + oPatientAppointment.DoctorUserId + "', '" + oPatientAppointment.AppointDate + "', GETDATE())";
                 try
                 {
                     SqlCommand cmd2 = new SqlCommand(query2, con.GetSqlConnection());

@@ -8,9 +8,7 @@
         $(document).ready(function () {
             $("#TxtPatientName").hide();
             //$("#BtnAddApoint").css('visibility', 'hidden');
-            $("#BtnAddApoint").hide();
-            $("#lblAppointBtnMsg").text("You Need To Fix an Appointment to Submit");
-            $("#lblAppointBtnMsg").css("color", "red");
+            hideAppointBtn();
             GetDoctorCategory();
         });
         $(document).on("change", "#DdlDocCategory", function () {
@@ -18,7 +16,11 @@
             //$("#DdlDocName").append("<option value='0'>Select Doctor Name</option>");
             var catId = $(this).val();
             GetDoctorName(catId);
+            hideAppointBtn();
 
+        });
+        $(document).on("change", "#DdlDocName", function () {
+            hideAppointBtn();
         });
         $(document).on("change", "#TxtMobileNo", function () {
            
@@ -27,11 +29,16 @@
             //$('#TxtPatientName').empty();
             //$('#lblPatientId').clear();
             $('#TxtPatientName').val("");
-            $('#lblPatientId').text("");
+            $('#txtHidePatientId').val("");
             GetPatientName(mobileNo);
             $("#TxtPatientName").show();
             //alert("No way.... ");
         });
+        function hideAppointBtn() {
+            $("#BtnAddApoint").hide();
+            $("#lblAppointBtnMsg").text("Please Check for an Appointment First to Submit");
+            $("#lblAppointBtnMsg").css("color", "red");
+        }
         function GetDoctorCategory() {
             $.ajax({
                 type: "POST",
@@ -92,12 +99,24 @@
                 dataType: "json",
                 async: false,
                 success: function (data) {
-                   // alert("Go on");
+                    // alert("Go on");
                     if (data.d != '') {
+                        if (data.d.Id == "") {
+                            $("#TxtPatientName").prop('readonly', false);
+                            
+                        }
+                        else{
+                            $("#TxtPatientName").prop('readonly', true);
+                            // $("#TxtPatientName").prop('readonly', false);
+                        }
                         $('#TxtPatientName').val(data.d.Name.toString());
-                        $('#lblPatientId').html(data.d.Id.toString());
+                        $('#txtHidePatientId').val(data.d.Id.toString());
                         //Console.log(data.d[i].Name.toString());
                     }
+                   // else {
+                   //     $("#TxtPatientName").removeAttr("readonly");
+                   // }
+                        
                     //var mobileNum = $(data.d);
                     //$("#TxtPatientName").val(data.d);
                    // $("#TxtPatientName").hide();
@@ -120,9 +139,7 @@
             $.ajax({
                 type: "POST",
                 url: "/AjaxCall.aspx/GetSerialNo",
-               // data: '{ "appointDate": "' + inputDate + '" }',
                 data: '{"appointDate":"' + inputDate + '", "doctorId":"' + docId + '"}',
-               // data: "{'appointDate':'" + inputDate + "', 'doctorId':'" + docId + "'}",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 async: false,
@@ -143,9 +160,6 @@
                     {
                         $("#LblAvailabilityMsg").text("Error !!! Input Data Correctly.");
                         $("#LblAvailabilityMsg").css("color", "red");
-                       // $("#BtnAddApoint").hide();
-                       // $("#lblAppointBtnMsg").text("You Need To Fix an Appointment to Submit");
-                        // $("#lblAppointBtnMsg").css("color", "red");
                     }
                     else
                     {
@@ -208,16 +222,20 @@
                                     <asp:Label ID="LblAvailabilityMsg" ClientIDMode="Static" runat="server" Font-Size="Medium" Font-Bold="True"></asp:Label>
                                 </div>
                                 <div class="mt-30">
+                                    <div class="mt-10">
+                                        <asp:RegularExpressionValidator ID="MobileRev" runat="server" ErrorMessage="Enter Valid 11 digit Mobile Number.(e.g:01711234567)" ControlToValidate="TxtMobileNo" ValidationExpression="[0-9]{11}" Font-Bold="True" ForeColor="#CC0000"></asp:RegularExpressionValidator>
+                                    </div>
                                     <asp:TextBox CssClass="form-control" ClientIDMode="Static" required="" ID="TxtMobileNo" runat="server" placeholder="Mobile Number " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Mobile Number'"></asp:TextBox>
                                 </div>
                                 <%--<div class="mt-10" style="text-align:right;">
                                     <asp:Button CssClass="genric-btn info circle" ID="BtnUserCheck" runat="server" Text="Search User" />
                                 </div>--%>
                                  <div class="mt-10">
-                                      <asp:TextBox CssClass="form-control" ClientIDMode="Static" required="" ID="TxtPatientName" runat="server" placeholder="Patient Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Patient Name'"></asp:TextBox>
+                                      <asp:TextBox CssClass="form-control" ClientIDMode="Static" ReadOnly="false" required="" ID="TxtPatientName" runat="server" placeholder="Patient Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Patient Name'"></asp:TextBox>
                                  </div>
 
-                                <asp:Label runat="server" ID="lblPatientId" ClientIDMode="Static" Visible="true" ></asp:Label>
+                                <%--<asp:Label runat="server" ID="lblPatientId" ClientIDMode="Static" Visible="true" ></asp:Label>--%>
+                                <asp:TextBox runat="server" ID="txtHidePatientId" ClientIDMode="Static" ></asp:TextBox>
                                 <div class="mt-10" style="text-align:center;">
                                     <asp:Button  CssClass="genric-btn info e-large circle" ClientIDMode="Static" ID="BtnAddApoint" runat="server" Text="Confirm Appointment" OnClick="BtnAddApoint_Click" />
                                 </div>

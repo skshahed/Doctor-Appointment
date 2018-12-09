@@ -11,7 +11,7 @@ namespace DoctorAppointment.DAL
     public class PrescriptionFormDal
     {
         //Getting User Information From DB Using DataAdapter-------->>>
-        public DataTable GetPatientInfo(string appointId, string patientId)
+        public DataTable GetPatientInfo(string appointId)
         {
             DataTable patientInfoDt = new DataTable();
             //string appointId = oPatientAppointment.Id.ToString();

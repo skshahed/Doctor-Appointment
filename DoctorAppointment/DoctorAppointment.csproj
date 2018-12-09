@@ -554,6 +554,7 @@
     <Compile Include="DAO\Test.cs" />
     <Compile Include="DAO\UserCategory.cs" />
     <Compile Include="DAO\UserProfile.cs" />
+    <Compile Include="DAO\VisitTimeConverter.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

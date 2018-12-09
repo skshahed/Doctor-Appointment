@@ -9,10 +9,10 @@ namespace DoctorAppointment.BLL
     public class PrescriptionFormBll
     {
         /****** Getting Patient Information  ========>  *****/
-        public DataTable GetPatientInfo(string appointId, string PatientId)
+        public DataTable GetPatientInfo(string appointId)
         {
             DAL.PrescriptionFormDal dal = new DAL.PrescriptionFormDal();
-            DataTable PatientInfoDt = dal.GetPatientInfo(appointId, PatientId);
+            DataTable PatientInfoDt = dal.GetPatientInfo(appointId);
             return PatientInfoDt;
         }
     }

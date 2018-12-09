@@ -85,6 +85,15 @@ namespace DoctorAppointment.UI {
         protected global::System.Web.UI.WebControls.DropDownList ddlAddMedicine;
         
         /// <summary>
+        /// btnAddMedicine control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAddMedicine;
+        
+        /// <summary>
         /// Label4 control.
         /// </summary>
         /// <remarks>
