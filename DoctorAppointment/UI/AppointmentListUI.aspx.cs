@@ -33,19 +33,29 @@ namespace DoctorAppointment.UI
             PatientAppointment oPatientAppointment = new PatientAppointment();
             oPatientAppointment.AppointDate = getDate;
             DataTable appoinListDt = bll.GetAppointmentList(oPatientAppointment);
-            if (appoinListDt.Rows.Count > 0)
+            if (appoinListDt != null)
             {
-                lblEmptyMsg.Text = "";
-                GVAppointmentList.DataSource = appoinListDt;
-                GVAppointmentList.DataBind();
-                
+                if (appoinListDt.Rows.Count > 0)
+                {
+                    lblEmptyMsg.Text = "";
+                    GVAppointmentList.DataSource = appoinListDt;
+                    GVAppointmentList.DataBind();
+
+                }
+                else
+                {
+                    GVAppointmentList.DataSource = null;
+                    // GVAppointmentList.Columns.Clear();
+                    GVAppointmentList.DataBind();
+                    lblEmptyMsg.Text = "No Appointment History Found !!!";
+                }
             }
             else
             {
                 GVAppointmentList.DataSource = null;
-               // GVAppointmentList.Columns.Clear();
+                // GVAppointmentList.Columns.Clear();
                 GVAppointmentList.DataBind();
-                lblEmptyMsg.Text = "No Appointment History Found !!!";
+                lblEmptyMsg.Text = "Really ? Nice Try. Now Input Valid Date !";
             }
         }
 /***** Appointment List shows by Search date  ========> ******/

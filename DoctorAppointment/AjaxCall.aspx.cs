@@ -254,7 +254,7 @@ namespace DoctorAppointment
                         }
                     }
                 }
-                catch
+                catch (Exception r)
                 {
                     serial = "Error";
                 }

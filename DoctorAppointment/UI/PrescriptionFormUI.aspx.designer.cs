@@ -13,6 +13,15 @@ namespace DoctorAppointment.UI {
     public partial class PrescriptionFormUI {
         
         /// <summary>
+        /// lblSerialNo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSerialNo;
+        
+        /// <summary>
         /// lblAppointNo control.
         /// </summary>
         /// <remarks>
@@ -58,6 +67,15 @@ namespace DoctorAppointment.UI {
         protected global::System.Web.UI.WebControls.Label lblGender;
         
         /// <summary>
+        /// lblSaveMsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSaveMsg;
+        
+        /// <summary>
         /// txtAreaDisease control.
         /// </summary>
         /// <remarks>
@@ -94,40 +112,22 @@ namespace DoctorAppointment.UI {
         protected global::System.Web.UI.WebControls.Button btnAddMedicine;
         
         /// <summary>
-        /// Label4 control.
+        /// hfMedCounter control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
+        protected global::System.Web.UI.WebControls.HiddenField hfMedCounter;
         
         /// <summary>
-        /// lblMedicineName control.
+        /// lblMedCounter control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMedicineName;
-        
-        /// <summary>
-        /// Label5 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label5;
-        
-        /// <summary>
-        /// txtMedProcedure control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMedProcedure;
+        protected global::System.Web.UI.WebControls.Label lblMedCounter;
         
         /// <summary>
         /// Label1 control.
@@ -148,40 +148,31 @@ namespace DoctorAppointment.UI {
         protected global::System.Web.UI.WebControls.DropDownList ddlAddTest;
         
         /// <summary>
-        /// Label6 control.
+        /// btnAddTest control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label6;
+        protected global::System.Web.UI.WebControls.Button btnAddTest;
         
         /// <summary>
-        /// Label7 control.
+        /// hfTestCounter control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label7;
+        protected global::System.Web.UI.WebControls.HiddenField hfTestCounter;
         
         /// <summary>
-        /// Label8 control.
+        /// lblTestCounter control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label8;
-        
-        /// <summary>
-        /// TextBox2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label TextBox2;
+        protected global::System.Web.UI.WebControls.Label lblTestCounter;
         
         /// <summary>
         /// Label2 control.
@@ -193,13 +184,13 @@ namespace DoctorAppointment.UI {
         protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// TextBox1 control.
+        /// txtDocAdvice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox txtDocAdvice;
         
         /// <summary>
         /// btnSavePrescription control.

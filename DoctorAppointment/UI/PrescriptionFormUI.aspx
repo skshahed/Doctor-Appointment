@@ -5,13 +5,7 @@
         body {
             background: #CAFF70 !important;
             color: darkmagenta;
-            h4;
-
-        {
-            color: aqua;
-        }
-
-        } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+        } h4{color: burlywood;} /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
     </style>
     <link type="text/css" rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
@@ -23,7 +17,7 @@
             GetMedicineList();
             GetTestList();
         });
-        function displayMedicine() {
+       /* function displayMedicine() {
             $("#divAddMedicine").show();
             //var medName = $("#ddlAddMedicine option:selected").text();
             var medName = $("#ddlAddMedicine").children(":selected").text();
@@ -50,16 +44,74 @@
 
             }
             //alert(medName);
+        } */
+        
+        function displayMedicine() {
+            var count = $("#hfMedCounter").val();
+            //var createIdMedName = "lblMedicineName"+count;
+            //var createIdProcedure = "txtMedProcedure"+count;
+            var medName = $("#ddlAddMedicine").children(":selected").text();
+            if(count == 0){
+                $("#divAddMedicine").show();
+            }
+                $("#divAddMedicine").append("" +
+                    "<div class='singleMedArea'><div class='form-inline'>" +
+                        "<label class='font-weight-bold col-md-4' ># Medicine Name :</label>" +
+                        "<label class='font-weight-bold font-italic' id='lblMedicineName" + count + "' >" + medName + "</label>" +
+                    "</div><div class='form-inline mt-10' >" +
+                        "<label class='font-weight-bold col-md-4' >Take Procedure :</label>" +
+                         "<input class='form-control col-md' id='txtMedProcedure" + count + "' />" +
+                         "<button class='genric-btn danger circle ml-3 removeMedicine' type='button' style='width: 100px' id='btnMedicineRemove" + count + "'>Remove</button>" +
+                    "</div></div>");
+                count++;
+                $("#lblMedCounter").text(count);
+                $("#hfMedCounter").val(count);
         }
-        //$(document).on("click", "#btnAddMedicine", function () {
 
+        function displayTest() {
+            var countTest = $("#hfTestCounter").val();
+            //var createIdTestName = "lblTestName" + countTest;
+            //var createIdRequirement = "lblRequirement" + countTest;
+            var TestName = $("#ddlAddTest").children(":selected").text();
+            if (countTest == 0) {
+                $("#divAddTest").show();
+            }
+            $("#divAddTest").append("" +
+                "<div class='singleTestArea'><div class='form-inline'>" +
+                    "<label class='font-weight-bold col-md-4' ># Test Name :</label>" +
+                    "<label class='font-weight-bold font-italic' id='lblTestName" + countTest + "' >" + TestName + "</label>" +
+                "</div><div class='form-inline mt-10' >" +
+                    "<label class='font-weight-bold col-md-4' >Requirement :</label>" +
+                     "<label class='col-md lnr-text-align-left' id='lblRequirement" + countTest + "' >Requirement </label>" +
+                     "<button class='genric-btn danger circle ml-3 removeTest' type='button' style='width: 100px' id='btnTestRemove_" + countTest + "'>Remove</button>" +
+                "</div></div>");
+            countTest++;
+            $("#lblTestCounter").text(countTest);
+            $("#hfTestCounter").val(countTest);
+
+        }
+        $(document).on("click", '.removeMedicine', function () {
+            var count = $("#hfMedCounter").val();
+            $(this).closest("div.singleMedArea").remove();
+            count--;
+            $("#lblMedCounter").text(count);
+            $("#hfMedCounter").val(count);
+        });
+        $(document).on("click", '.removeTest', function () {
+            var countTest = $("#hfTestCounter").val();
+            $(this).closest("div.singleTestArea").remove();
+            countTest--;
+            $("#hfTestCounter").val(countTest);
+            $("#lblTestCounter").text(countTest);
+        });
+       // $(document).on("click", "#btnAddMedicine", function () {
         //    $("#divAddMedicine").show();
-        //        //var medName = $("#ddlAddMedicine option:selected").text();
-        //        var medName = $("#ddlAddMedicine").children(":selected").text();
-        //        //$("#divAddMedicine").append("#divAddMedicine");
-        //        $("#lblMedicineName").html(medName);
+          //      //var medName = $("#ddlAddMedicine option:selected").text();
+          //      var medName = $("#ddlAddMedicine").children(":selected").text();
+          //      //$("#divAddMedicine").append("#divAddMedicine");
+          //      $("#lblMedicineName").html(medName);
 
-        //});
+       // });
         function GetMedicineList() {
             $.ajax({
                 type: "POST",
@@ -117,7 +169,7 @@
                     <h4>Doctors Appointment</h4>
                     <p>Welcome, this is the place for a better treatment. </p>
                 </div>
-
+                
                 <div class=" col-md-4 border border-success offset-md-4">
                     <div class="mt-10"></div>
                     <h4>Appointment Information</h4>
@@ -127,13 +179,14 @@
                             <td>From 6:00 PM to 9:00 PM</td>
                         </tr>
                         <tr>
-                            <td><b>Appointmnet No :</b></td>
-                            <td>
-                                <asp:Label runat="server" ID="lblAppointNo"></asp:Label></td>
+                            <td><b>Serial No :</b></td>
+                            <td><asp:Label runat="server" ID="lblSerialNo"></asp:Label></td>
+                            <asp:Label runat="server" Visible="false" ID="lblAppointNo"></asp:Label>
                         </tr>
                     </table>
                 </div>
             </div>
+            
             <!--  End doctor General Information Row -->
             <div class="mt-10 border-bottom"></div>
             <!--  Start Patient General Information Row -->
@@ -155,6 +208,7 @@
                 </div>
             </div>
             <!--  End Patient General Information Row -->
+            <div class="mt-10 col-md-12 text-center"><asp:Label runat="server" ID="lblSaveMsg" Font-Size="Medium" Font-Bold="True"></asp:Label></div>
             <div class="mt-10"></div>
             <!--  Start Prescription Information Row -->
             <div class="row mt-10">
@@ -166,47 +220,39 @@
                 <div class="col-md ml-30" style="width: 100%">
                     <h4 class="text-center bg-white text-success">Prescription Area</h4>
                     <div class="mt-10 form-inline">
-                        <asp:Label CssClass="font-weight-bold col-md-4" runat="server" ID="Label3">1. Prescribe Medicine :</asp:Label>
+                        <asp:Label CssClass="font-weight-bold col-md-4" runat="server" ID="Label3">i) Prescribe Medicine :</asp:Label>
                         <asp:DropDownList ClientIDMode="Static" ID="ddlAddMedicine" runat="server" CssClass="col-md form-control">
                         </asp:DropDownList>
-                        <asp:Button runat="server" CssClass="genric-btn info circle ml-3" style="width: 100px" ClientIDMode="Static" ID="btnAddMedicine" Text="Add" OnClientClick="displayMedicine(); return false;"></asp:Button>
+                        <asp:Button runat="server" CssClass="genric-btn info circle ml-3" style="width: 100px" ClientIDMode="Static" ID="btnAddMedicine" Text="Add" OnClientClick="displayMedicine(); return false;" ></asp:Button>
                     </div>
+                    <asp:HiddenField runat="server" ClientIDMode="Static" ID="hfMedCounter" Value="0" />
+                    <asp:Label CssClass="badge badge-pill badge-success"  runat="server" ClientIDMode="Static" ID="lblMedCounter" Font-Size="Medium"></asp:Label>
                     <div id="divAddMedicine" class="ml-50 mt-10">
-                        <div class="divShowMedicine">
-                            <div class="form-inline">
-                                <asp:Label CssClass="font-weight-bold col-md-4" runat="server" ID="Label4">i). Medicine Name :</asp:Label>
-                                <asp:Label CssClass="col-md font-weight-bold font-italic" runat="server" ID="lblMedicineName" ClientIDMode="Static"></asp:Label>
-                            </div>
-                            <div class="form-inline ml-3 mt-10">
-                                <asp:Label CssClass="font-weight-bold col-md-3" runat="server" ID="Label5">Take Procedure :</asp:Label>
-                                <asp:TextBox CssClass="form-control col-md ml-5" runat="server" ID="txtMedProcedure"></asp:TextBox>
-                                <%-- <button class="genric-btn danger circle ml-3" style="width: 100px" id="btnMedicineRemove">Remove</button>--%>
-                            </div>
-                        </div>
+                        
+                             <!---- Medicine Stack Here   --->
+                       
                     </div>
+
                     <div class="mt-10 form-inline">
-                        <asp:Label CssClass="font-weight-bold col-md-4" runat="server" ID="Label1">2. Test Items :</asp:Label>
+                        <asp:Label CssClass="font-weight-bold col-md-4" runat="server" ID="Label1">ii) Test Items :</asp:Label>
                         <asp:DropDownList ID="ddlAddTest" ClientIDMode="Static" runat="server" CssClass="col-md form-control">
                         </asp:DropDownList>
-                        <button class="genric-btn info circle ml-3 w-10" style="width: 100px" id="btnAddTest">Add</button>
+                        <asp:Button runat="server" CssClass="genric-btn info circle ml-3" style="width: 100px;" ClientIDMode="Static" ID="btnAddTest" Text="Add" OnClientClick="displayTest(); return false;" Enabled="True" UseSubmitBehavior="False"></asp:Button>
+                      
                     </div>
+                    <asp:HiddenField runat="server" ClientIDMode="Static" ID="hfTestCounter" Value="0" />
+                    <asp:Label runat="server" CssClass="badge badge-pill badge-success" ClientIDMode="Static" ID="lblTestCounter" Font-Size="Medium" ></asp:Label>
                     <div id="divAddTest" class="ml-50 mt-10">
-                        <div class="form-inline">
-                            <asp:Label CssClass="font-weight-bold col-md-3" runat="server" ID="Label6">i). Test Name :</asp:Label>
-                            <asp:Label runat="server" ID="Label7"></asp:Label>
-                        </div>
-                        <div class="form-inline ml-3 mt-10">
-                            <asp:Label CssClass="font-weight-bold col-md-3" runat="server" ID="Label8">Requirement :</asp:Label>
-                            <asp:Label CssClass="col-md ml-5" runat="server" ID="TextBox2"></asp:Label>
-                            <button class="genric-btn danger circle ml-3" style="width: 100px" id="btnTestRemove">Remove</button>
-                        </div>
+                        <!--- Test Will be added Here by JQuery ---->
+
                     </div>
+
                     <div class="mt-10 form-inline">
-                        <asp:Label CssClass="font-weight-bold col-md-4" runat="server" ID="Label2">3. Doctor Advice :</asp:Label>
-                        <asp:TextBox CssClass="form-control col-md p-2" Style="resize: vertical; overflow: auto;" TextMode="MultiLine" runat="server" ID="TextBox1"></asp:TextBox>
+                        <asp:Label CssClass="font-weight-bold col-md-4" runat="server" ID="Label2">iii) Doctor Advice :</asp:Label>
+                        <asp:TextBox CssClass="form-control col-md p-2" Style="resize: vertical; overflow: auto;" TextMode="MultiLine" runat="server" ID="txtDocAdvice"></asp:TextBox>
                     </div>
                     <div class="mt-10 text-right">
-                        <asp:Button CssClass="genric-btn primary e-large radius" runat="server" ID="btnSavePrescription" Text="Save & Print" />
+                        <asp:Button CssClass="genric-btn primary e-large radius" ClientIDMode="Static" runat="server" ID="btnSavePrescription" Text="Save & Print" OnClick="btnSavePrescription_Click" />
                     </div>
                 </div>
 
